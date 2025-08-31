@@ -1,0 +1,115 @@
+{
+  "language": "en-US",
+  "timezone": "America/New_York",
+  "locale": "en-US",
+  "display": {
+    "colorScheme": {
+      "us": {
+        "profit": "#00C853",
+        "loss": "#FF3737",
+        "neutral": "#FFFFFF"
+      },
+      "ko": {
+        "profit": "#FF3737",
+        "loss": "#0051C7", 
+        "neutral": "#FFFFFF"
+      }
+    },
+    "currentColorMode": "us",
+    "dateFormat": {
+      "us": "MM/DD/YYYY h:mm:ss A",
+      "ko": "YYYY-MM-DD HH:mm:ss"
+    },
+    "currentDateFormat": "us",
+    "numberFormat": {
+      "currency": "USD",
+      "decimals": 2,
+      "thousandsSeparator": ","
+    }
+  },
+  "market": {
+    "defaultExchange": "NYSE",
+    "tradingHours": {
+      "preMarket": {
+        "start": "04:00",
+        "end": "09:30"
+      },
+      "regular": {
+        "start": "09:30",
+        "end": "16:00"
+      },
+      "afterHours": {
+        "start": "16:00",
+        "end": "20:00"
+      }
+    },
+    "holidays": [
+      "2025-01-01",
+      "2025-01-20",
+      "2025-02-17",
+      "2025-04-18",
+      "2025-05-26",
+      "2025-06-19",
+      "2025-07-04",
+      "2025-09-01",
+      "2025-11-27",
+      "2025-12-25"
+    ]
+  },
+  "api": {
+    "alpaca": {
+      "apiKey": "",
+      "secretKey": "",
+      "baseUrl": {
+        "paper": "https://paper-api.alpaca.markets",
+        "live": "https://api.alpaca.markets"
+      },
+      "dataUrl": "https://data.alpaca.markets",
+      "currentMode": "paper"
+    }
+  },
+  "trading": {
+    "defaultMode": "PAPER",
+    "autoTrading": false,
+    "maxOrdersPerDay": 100,
+    "defaultSlippage": 0.01,
+    "defaultTimeInForce": "day",
+    "extendedHours": false,
+    "fractionalShares": true,
+    "minOrderValue": 1.00
+  },
+  "notifications": {
+    "enabled": true,
+    "onTrade": true,
+    "onError": true,
+    "onMarketOpen": true,
+    "onMarketClose": true,
+    "channels": {
+      "email": {
+        "enabled": false,
+        "address": ""
+      },
+      "telegram": {
+        "enabled": false,
+        "botToken": "",
+        "chatId": ""
+      },
+      "discord": {
+        "enabled": false,
+        "webhookUrl": ""
+      }
+    }
+  },
+  "logs": {
+    "level": "INFO",
+    "format": "json",
+    "retentionDays": 30,
+    "saveToFile": true,
+    "saveToDatabase": true
+  },
+  "regional": {
+    "preferredLanguage": "en-US",
+    "alternativeLanguage": "ko",
+    "quickSwitch": true
+  }
+}

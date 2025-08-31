@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>McMugane Terminal</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>McMugane Terminal</h1>
+            <div class="status-bar">
+                <span id="mode-indicator">MODE: PAPER</span>
+                <span id="auto-indicator">AUTO: OFF</span>
+                <span id="connection-status">● Connected</span>
+            </div>
+        </header>
+        
+        <main>
+            <!-- 자동매매 카드 섹션 -->
+            <div class="auto-trading-section">
+                <h2>자동매매 전략</h2>
+                <div class="strategy-cards">
+                    <div class="strategy-card" data-strategy="ma_crossover">
+                        <h3>이동평균 교차</h3>
+                        <p>단기/장기 이동평균 교차 전략</p>
+                        <button class="toggle-strategy">활성화</button>
+                    </div>
+                    <div class="strategy-card" data-strategy="rsi_strategy">
+                        <h3>RSI 전략</h3>
+                        <p>과매도/과매수 구간 활용</p>
+                        <button class="toggle-strategy">활성화</button>
+                    </div>
+                    <div class="strategy-card" data-strategy="dca_strategy">
+                        <h3>적립식 투자</h3>
+                        <p>정기적 분할 매수</p>
+                        <button class="toggle-strategy">활성화</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 터미널 섹션 -->
+            <div class="terminal-section">
+                <div class="terminal-output" id="terminal-output">
+                    <div class="welcome-message">
+                        McMugane Terminal v1.0.0
+                        Type 'HELP' for available commands
+                        =====================================
+                    </div>
+                </div>
+                <div class="terminal-input-wrapper">
+                    <span class="prompt">mcmugane></span>
+                    <input type="text" id="terminal-input" class="terminal-input" autofocus>
+                </div>
+            </div>
+            
+            <!-- 포트폴리오 요약 -->
+            <div class="portfolio-summary">
+                <h3>포트폴리오 요약</h3>
+                <div id="portfolio-content">
+                    <p>Loading...</p>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/terminal.js"></script>
+</body>
+</html>

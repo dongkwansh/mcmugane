@@ -1,0 +1,21 @@
+{
+  "name": "Dollar Cost Averaging",
+  "description": "정기적으로 일정 금액을 분할 매수하는 전략",
+  "enabled": true,
+  "parameters": {
+    "interval": "weekly",
+    "dayOfWeek": "monday",
+    "time": "10:00",
+    "amountPerTrade": 1000,
+    "targetTickers": ["SPY", "QQQ", "VTI"]
+  },
+  "conditions": {
+    "skipIfAboveMA": true,
+    "maPeriod": 200,
+    "maxPremium": 0.05
+  },
+  "allocation": {
+    "maxPositionSize": 0.33,
+    "rebalanceThreshold": 0.1
+  }
+}

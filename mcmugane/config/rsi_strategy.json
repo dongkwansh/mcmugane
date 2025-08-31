@@ -1,0 +1,21 @@
+{
+  "name": "RSI Strategy",
+  "description": "RSI 과매도/과매수 구간을 이용한 역추세 매매",
+  "enabled": true,
+  "parameters": {
+    "rsiPeriod": 14,
+    "oversoldLevel": 30,
+    "overboughtLevel": 70,
+    "timeframe": "1Hour",
+    "confirmationBars": 2
+  },
+  "allocation": {
+    "maxPositionSize": 0.15,
+    "maxTotalExposure": 0.6
+  },
+  "riskManagement": {
+    "stopLoss": 0.03,
+    "takeProfit": 0.06,
+    "trailingStop": 0.02
+  }
+}

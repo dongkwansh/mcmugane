@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>McMugane Terminal - Login</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <h2>McMugane Terminal</h2>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="username">사용자명</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">비밀번호</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit" class="login-button">로그인</button>
+            </form>
+            <div id="error-message" style="color: var(--accent-red); margin-top: 1rem; text-align: center;"></div>
+        </div>
+    </div>
+    
+    <script>
+        document.getElementById('login-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            try {
+                const response = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username, password })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    localStorage.setItem('access_token', data.access_token);
+                    window.location.href = '/';
+                } else {
+                    document.getElementById('error-message').textContent = data.error || '로그인 실패';
+                }
+            } catch (error) {
+                document.getElementById('error-message').textContent = '서버 연결 오류';
+            }
+        });
+    </script>
+</body>
+</html>
