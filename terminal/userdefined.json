@@ -1,0 +1,67 @@
+{
+  "alpha_vantage_key": "MJPS9SP8IL3ZMJNC",
+  "alpaca": {
+    "feed": "iex",
+    "market": "https://data.alpaca.markets",
+    "paper": {
+      "key": "PK76SR2W9QVV4JDNC6CZ",
+      "secret": "4hd2bm72iPn6bJqhdjtLm6ishz6ZIKtIMaCCdNgM",
+      "base": "https://paper-api.alpaca.markets"
+    },
+    "live": {
+      "key": "AKJU8DIAOZ0V3UBS315X",
+      "secret": "5Pt1OWd4YGnF28fbc1MvhR6eQKku5ts9fIpaIujD",
+      "base": "https://api.alpaca.markets"
+    }
+  },
+  "ui": {
+    "datetime_format": "%m-%d-%y %H:%M:%S",
+    "decimals": 2,
+    "chart_width": 80,
+    "chart_height": 15,
+    "baskets_per_line": 4,
+    "color_scheme": "us",
+    "fixed_left_width": 34
+  },
+  "ticker_colors": {
+    "SOXL": "bright_cyan",
+    "AAPL": "yellow",
+    "NVDA": "bright_magenta"
+  },
+  "defaults": {
+    "default_ticker": "SOXL"
+  },
+  
+  "baskets": {
+    "myETF": {
+      "NVDA": 0.179,
+      "AMD": 0.1,
+      "AVGO": 0.08,
+      "MSFT": 0.08,
+      "META": 0.07,
+      "TSLA": 0.07,
+      "AMZN": 0.06,
+      "GOOG": 0.06,
+      "AAPL": 0.05,
+      "PLTR": 0.04,
+      "COIN": 0.04,
+      "QCOM": 0.03,
+      "SMR": 0.02,
+      "HOOD": 0.02,
+      "ORCL": 0.02,
+      "GEV": 0.01,
+      "XOM": 0.01,
+      "COST": 0.01,
+      "JPM": 0.01,
+      "GS": 0.01,
+      "TMUS": 0.005,
+      "WMT": 0.005,
+      "HD": 0.005,
+      "UNH": 0.005,
+      "VZ": 0.003,
+      "CVS": 0.003,
+      "CRCL": 0.005
+    }
+  }
+}
+
