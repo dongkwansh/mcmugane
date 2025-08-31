@@ -1,0 +1,9 @@
+{
+  "users": [
+    {
+      "username": "admin",
+      "salt": "mcmugane-salt",
+      "password_hash": "hyo4QmL_xp0s7b9PWxWtCx8xdn3vIAKrI6TRXCWXBHA="
+    }
+  ]
+}

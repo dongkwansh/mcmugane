@@ -1,0 +1,23 @@
+{
+  "name": "Donchian Breakout (20)",
+  "timeframe": "5Min",
+  "params": {
+    "donchian": 20
+  },
+  "entry_rules": [
+    {
+      "type": "breakout_high",
+      "lookback": 20
+    }
+  ],
+  "exit_rules": [
+    {
+      "type": "breakdown_low",
+      "lookback": 20
+    }
+  ],
+  "risk": {
+    "take_profit_percent": 3.0,
+    "stop_loss_percent": 1.5
+  }
+}

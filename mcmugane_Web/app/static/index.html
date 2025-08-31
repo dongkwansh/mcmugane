@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MCMUGANE Autotrader</title>
+  <!-- 상대경로로 변경: /cli 경로 프록시 대응 -->
+  <link rel="stylesheet" href="static/styles.css">
+</head>
+<body>
+  <header>
+    <h1>MCMUGANE Autotrader</h1>
+    <div class="status" id="wsStatus">WS: disconnected</div>
+  </header>
+
+  <section class="controls">
+    <div class="control">
+      <label>Account</label>
+      <select id="accountSelect"></select>
+    </div>
+    <div class="control">
+      <label>Algorithm</label>
+      <select id="algoSelect"></select>
+    </div>
+    <div class="control">
+      <label>Symbols (comma)</label>
+      <input id="symbolsInput" placeholder="AAPL,MSFT,SPY" />
+    </div>
+    <div class="control">
+      <label>Position Size</label>
+      <select id="sizeType">
+        <option value="notional">Notional ($)</option>
+        <option value="qty">Quantity (shares)</option>
+      </select>
+      <input id="sizeValue" type="number" step="1" value="100" />
+    </div>
+    <div class="buttons">
+      <button id="startBtn">Start</button>
+      <button id="stopBtn">Stop</button>
+      <button id="fmtBtn" title="Toggle output format">FORMAT: table</button>
+    </div>
+  </section>
+
+  <section class="panes">
+    <div class="pane">
+      <h3>Runs</h3>
+      <pre id="runsPane"></pre>
+    </div>
+    <div class="pane">
+      <h3>Logs / Terminal</h3>
+      <div id="logPane" class="log"></div>
+      <div class="terminal">
+        <input id="terminalInput" placeholder="Type HELP and press Enter..." />
+      </div>
+    </div>
+  </section>
+
+  <!-- 상대경로로 변경 -->
+  <script src="static/script.js"></script>
+</body>
+</html>

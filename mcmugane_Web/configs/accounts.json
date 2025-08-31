@@ -1,0 +1,16 @@
+{
+  "alpaca_paper": {
+    "name": "Alpaca Paper",
+    "broker": "alpaca",
+    "paper": true,
+    "api_key": "YOUR_PAPER_API_KEY",
+    "secret_key": "YOUR_PAPER_SECRET_KEY"
+  },
+  "alpaca_live": {
+    "name": "Alpaca Live",
+    "broker": "alpaca",
+    "paper": false,
+    "api_key": "YOUR_LIVE_API_KEY",
+    "secret_key": "YOUR_LIVE_SECRET_KEY"
+  }
+}

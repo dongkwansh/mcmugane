@@ -1,0 +1,19 @@
+{
+  "name": "VWAP Mean Reversion (intraday)",
+  "timeframe": "1Min",
+  "params": {},
+  "entry_rules": [
+    {
+      "type": "vwap_reversion_long"
+    }
+  ],
+  "exit_rules": [
+    {
+      "type": "vwap_reversion_exit"
+    }
+  ],
+  "risk": {
+    "take_profit_percent": 0.8,
+    "stop_loss_percent": 0.7
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "name": "MACD Trend Follow (12/26/9)",
+  "timeframe": "5Min",
+  "params": {
+    "macd_fast": 12,
+    "macd_slow": 26,
+    "macd_signal": 9,
+    "sma_fast": 12,
+    "sma_slow": 26
+  },
+  "entry_rules": [
+    {
+      "type": "crosses_above",
+      "left": {
+        "feature": "macd_line"
+      },
+      "right": {
+        "feature": "macd_signal"
+      },
+      "note": "MACD bullish cross"
+    }
+  ],
+  "exit_rules": [
+    {
+      "type": "crosses_below",
+      "left": {
+        "feature": "macd_line"
+      },
+      "right": {
+        "feature": "macd_signal"
+      },
+      "note": "MACD bearish cross"
+    }
+  ],
+  "risk": {
+    "take_profit_percent": 2.5,
+    "stop_loss_percent": 1.2
+  }
+}
