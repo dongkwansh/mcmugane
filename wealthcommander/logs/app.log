@@ -1,0 +1,10 @@
+2025-09-01 15:18:39,906 - alpaca - INFO - Alpaca 클라이언트 초기화 성공 (계정: PAPER1, 모드: PAPER)
+2025-09-01 15:18:39,936 - apscheduler.scheduler - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2025-09-01 15:18:39,937 - apscheduler.scheduler - INFO - Added job "StrategyRunner.tick" to job store "default"
+2025-09-01 15:18:39,937 - apscheduler.scheduler - INFO - Scheduler started
+2025-09-01 15:18:39,937 - init - INFO - 시스템 초기화 완료. 계정: PAPER1, 자동매매 시작 상태: 실행중
+2025-09-01 15:21:58,410 - alpaca - INFO - Alpaca 클라이언트 초기화 성공 (계정: LIVE, 모드: LIVE)
+2025-09-01 15:22:27,839 - root - INFO - 자동매매 재개. 전략: Simple_Buy.
+2025-09-01 15:22:30,206 - root - INFO - 자동매매 재개. 전략: Simple_Buy.
+2025-09-01 15:23:36,934 - alpaca - INFO - Alpaca 클라이언트 초기화 성공 (계정: PAPER1, 모드: PAPER)
+2025-09-01 15:23:57,924 - alpaca - INFO - Alpaca 클라이언트 초기화 성공 (계정: LIVE, 모드: LIVE)
