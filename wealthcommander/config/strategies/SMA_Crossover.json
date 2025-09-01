@@ -1,0 +1,24 @@
+{
+  "name": "SMA_Crossover",
+  "type": "sma_crossover",
+  "enabled": true,
+  "universe": [
+    "AAPL",
+    "MSFT",
+    "NVDA",
+    "AMZN",
+    "META"
+  ],
+  "timeframe": "1Day",
+  "short_window": 20,
+  "long_window": 60,
+  "position_sizing": {
+    "type": "bp_percent",
+    "value": 10
+  },
+  "risk": {
+    "stop_loss_pct": 5,
+    "take_profit_pct": 10,
+    "max_positions": 5
+  }
+}
