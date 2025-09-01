@@ -1,0 +1,22 @@
+{
+  "name": "RSI_MeanReversion",
+  "enabled": false,
+  "universe": [
+    "QQQ",
+    "TSLA",
+    "NVDA"
+  ],
+  "timeframe": "1Day",
+  "rsi_period": 14,
+  "buy_below": 30,
+  "sell_above": 70,
+  "position_sizing": {
+    "type": "fixed_notional",
+    "value": 2000
+  },
+  "risk": {
+    "stop_loss_pct": 4,
+    "take_profit_pct": 8,
+    "cooldown_days": 3
+  }
+}

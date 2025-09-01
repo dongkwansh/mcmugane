@@ -1,0 +1,17 @@
+version: "3.9"
+
+services:
+  mcmugane:
+    build: .
+    container_name: mcmugane
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      - APP_ENV=prod
+      - TZ=Asia/Seoul
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./config:/app/config
+      - ./logs:/app/logs

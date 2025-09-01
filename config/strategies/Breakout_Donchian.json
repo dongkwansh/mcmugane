@@ -1,0 +1,20 @@
+{
+  "name": "Breakout_Donchian",
+  "enabled": false,
+  "universe": [
+    "SPY",
+    "DIA",
+    "IWM"
+  ],
+  "timeframe": "1Day",
+  "channel_lookback": 20,
+  "breakout_buffer_pct": 0.1,
+  "position_sizing": {
+    "type": "bp_percent",
+    "value": 15
+  },
+  "risk": {
+    "trailing_stop_pct": 5,
+    "max_positions": 3
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "myETF1": {
+    "AAPL": 30,
+    "MSFT": 20,
+    "GOOGL": 10,
+    "AMZN": 10,
+    "TSLA": 10,
+    "NVDA": 10,
+    "META": 10
+  },
+  "myETF2": {
+    "VOO": 50,
+    "VTI": 30,
+    "QQQ": 20
+  },
+  "myETF3": {
+    "SPY": 50,
+    "DIA": 30,
+    "IWM": 20
+  }
+}
