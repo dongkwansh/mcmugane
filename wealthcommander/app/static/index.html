@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ko">
+<header>
+    <h1>🚀 MCMUGANE Trading System</h1>
+    <div class="status-bar">
+        <div class="language-toggle">
+            <button id="lang-ko" class="active">🇰🇷 KO</button>
+            <button id="lang-us">🇺🇸 US</button>
+        </div>
+        <div id="market-status" class="market-status">
+            <span class="status-dot">●</span>
+            <span class="status-text">확인중...</span>
+        </div>
+        <span id="connection-status" class="status-indicator">● 연결중...</span>
+        <div class="time-display">
+            <div class="ny-time" id="ny-time">--:--:-- ET</div>
+            <div class="local-time" id="local-time">--:--:-- KST</div>
+        </div>
+    </div>
+</header>
+<body>
+    <div class="container">
+        <header>
+            <h1>🚀 MCMUGANE Trading System</h1>
+            <div class="status-bar">
+                <span id="connection-status" class="status-indicator">● 연결중...</span>
+                <span id="current-time"></span>
+            </div>
+        </header>
+
+        <div class="main-grid">
+            <!-- 제어 패널 -->
+            <div class="panel control-panel">
+                <h2>⚙️ 제어 센터</h2>
+                
+                <div class="control-section">
+                    <h3>거래 모드</h3>
+                    <div class="mode-selector">
+                        <button id="btn-paper" class="mode-btn active">
+                            📝 PAPER
+                        </button>
+                        <button id="btn-live" class="mode-btn">
+                            💰 LIVE
+                        </button>
+                    </div>
+                    <div class="info-box">
+                        <p>현재 모드: <span id="current-mode">PAPER</span></p>
+                        <p>매수력: $<span id="buying-power">0</span></p>
+                    </div>
+                </div>
+
+                <div class="control-section">
+                    <h3>🤖 자동매매</h3>
+                    <div class="auto-controls">
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="auto-toggle">
+                            <label for="auto-toggle"></label>
+                            <span id="auto-status">OFF</span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>전략 선택</label>
+                            <select id="strategy-select">
+                                <option value="">선택하세요</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>실행 간격 (초)</label>
+                            <input type="number" id="interval-input" 
+                                   value="60" min="10" step="10">
+                        </div>
+                        
+                        <button id="btn-apply" class="btn-primary">
+                            적용하기
+                        </button>
+                    </div>
+                </div>
+
+                <div class="control-section">
+                    <h3>📊 빠른 상태</h3>
+                    <div class="quick-stats">
+                        <div class="stat-item">
+                            <span class="stat-label">Alpaca 연결</span>
+                            <span id="alpaca-status" class="stat-value">-</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">활성 전략</span>
+                            <span id="active-strategy" class="stat-value">없음</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 터미널 패널 -->
+            <div class="panel terminal-panel">
+                <h2>💻 터미널</h2>
+                <div class="terminal-container">
+                    <div id="terminal-output"></div>
+                    <div class="terminal-input-wrapper">
+                        <span class="prompt">></span>
+                        <input type="text" id="terminal-input" 
+                               placeholder="명령어 입력 (HELP로 도움말 보기)"
+                               autocomplete="off">
+                    </div>
+                </div>
+                
+                <div class="quick-commands">
+                    <button class="quick-cmd" data-cmd="HELP">도움말</button>
+                    <button class="quick-cmd" data-cmd="STATUS">상태</button>
+                    <button class="quick-cmd" data-cmd="PORTFOLIO">포트폴리오</button>
+                    <button class="quick-cmd" data-cmd="ORDERS">주문내역</button>
+                    <button class="quick-cmd" data-cmd="HISTORY">거래내역</button>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>© 2025 MCMUGANE Trading System v1.0 | Powered by Alpaca Markets</p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

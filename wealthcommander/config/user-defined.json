@@ -1,0 +1,19 @@
+{
+  "language": "ko",
+  "date_format": "YYYY-MM-DD",
+  "colors": {
+    "up": "#d91c1c",
+    "down": "#1763cf"
+  },
+  "mode": "LIVE",
+  "auto": {
+    "enabled": true,
+    "interval_seconds": 60,
+    "strategy": "SMA_Crossover"
+  },
+  "allow_fractional": true,
+  "alpaca": {
+    "key_id": "PKDL0D5KSEL83J2TL1CU",
+    "secret_key": "YTKxcrw2Fa2dJaDHjdkqL7JqmQ0KpKrbhcWjL5gU"
+  }
+}
