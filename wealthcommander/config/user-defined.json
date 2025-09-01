@@ -1,0 +1,17 @@
+{
+  "language": "ko",
+  "date_format": "YYYY-MM-DD",
+  "colors": {
+    "up": "#ef4444",
+    "down": "#0ea5e9"
+  },
+  "mode": "PAPER",
+  "auto": {
+    "enabled": false,
+    "interval_seconds": 60,
+    "strategy": "Simple_Buy"
+  },
+  "allow_fractional": true,
+  "current_account": "PAPER1",
+  "timezone": "America/New_York"
+}
