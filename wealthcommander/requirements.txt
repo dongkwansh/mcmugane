@@ -1,0 +1,52 @@
+# WealthCommander - Optimized for Synology NAS 923+
+# Container-optimized dependencies
+
+# Core Framework
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+uvloop==0.19.0  # High-performance event loop for Linux
+
+# Alpaca Trading
+alpaca-py==0.27.0
+
+# WebSocket Support
+websockets==12.0
+
+# Task Scheduling
+APScheduler==3.10.4
+
+# Data Processing
+pandas==2.1.4
+numpy==1.24.4
+
+# Timezone Handling
+pytz==2023.3
+
+# Environment Configuration
+python-dotenv==1.0.0
+
+# HTTP Client
+httpx==0.25.2
+
+# Logging and Monitoring
+structlog==23.2.0
+
+# Configuration Management
+pydantic==2.5.0
+
+# Container Optimization
+gunicorn==21.2.0  # Production WSGI server
+setproctitle==1.3.3  # Process naming
+
+# NAS-specific optimizations
+psutil==5.9.6  # System monitoring
+aiofiles==23.2.1  # Async file operations
+alpaca-py
+apscheduler
+fastapi
+python-dotenv
+python-multipart
+pytz
+requests
+uvicorn
+websockets

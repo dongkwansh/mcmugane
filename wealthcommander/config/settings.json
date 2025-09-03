@@ -1,0 +1,90 @@
+{
+  "language": "ko",
+  "current_account": "PAPER1",
+  "default_account": "PAPER1",
+  "accounts": {
+    "LIVE": {
+      "name": "LIVE",
+      "type": "LIVE",
+      "description": "Live Trading Account",
+      "key_id": "",
+      "secret_key": ""
+    },
+    "PAPER1": {
+      "name": "PAPER1",
+      "type": "PAPER",
+      "description": "Paper Trading Account 1",
+      "key_id": "",
+      "secret_key": ""
+    },
+    "PAPER2": {
+      "name": "PAPER2",
+      "type": "PAPER",
+      "description": "Paper Trading Account 2",
+      "key_id": "",
+      "secret_key": ""
+    },
+    "PAPER3": {
+      "name": "PAPER3",
+      "type": "PAPER",
+      "description": "Paper Trading Account 3",
+      "key_id": "",
+      "secret_key": ""
+    }
+  },
+  "auto_trading": {
+    "enabled": false,
+    "strategy": "Simple_Buy",
+    "interval_minutes": 1
+  },
+  "ui_settings": {
+    "theme": "retro_mac",
+    "locale": "ko_KR",
+    "date_format": "YYYY-MM-DD",
+    "currency_symbol": "$",
+    "time_zone": "America/New_York"
+  },
+  "trading_settings": {
+    "allow_fractional": true,
+    "max_position_size": 10000,
+    "risk_limit_percent": 5.0,
+    "default_order_type": "market"
+  },
+  "locales": {
+    "ko": {
+      "date_format": "YYYY-MM-DD",
+      "time_format": "HH:mm:ss",
+      "datetime_format": "YYYY-MM-DD HH:mm",
+      "currency_symbol": "₩",
+      "decimal_separator": ".",
+      "thousand_separator": ",",
+      "colors": {
+        "up": "#d32f2f",
+        "down": "#1976d2",
+        "neutral": "#757575",
+        "profit": "#388e3c",
+        "loss": "#f44336",
+        "warning": "#ff9800"
+      }
+    },
+    "en": {
+      "date_format": "MM-DD-YY",
+      "time_format": "h:mm:ss A",
+      "datetime_format": "MM-DD-YY h:mm A",
+      "currency_symbol": "$",
+      "decimal_separator": ".",
+      "thousand_separator": ",",
+      "colors": {
+        "up": "#16a34a",
+        "down": "#dc2626",
+        "neutral": "#6b7280",
+        "profit": "#059669",
+        "loss": "#e11d48",
+        "warning": "#d97706"
+      }
+    }
+  },
+  "mode": "PAPER",
+  "timezone": "America/New_York",
+  "ext_hours_enabled": false
+}

@@ -1,0 +1,51 @@
+{
+  "custom_etfs": {
+    "TECH_BLEND": {
+      "name": "Technology Blend",
+      "description": "기술주 중심 ETF 포트폴리오",
+      "components": [
+        {"symbol": "QQQ", "weight": 40},
+        {"symbol": "VGT", "weight": 30},
+        {"symbol": "SOXX", "weight": 30}
+      ]
+    },
+    "GROWTH_COMBO": {
+      "name": "Growth Combination",
+      "description": "성장주 중심 분산 포트폴리오",
+      "components": [
+        {"symbol": "VUG", "weight": 50},
+        {"symbol": "VB", "weight": 25},
+        {"symbol": "VEA", "weight": 25}
+      ]
+    },
+    "DIVIDEND_FOCUS": {
+      "name": "Dividend Focus",
+      "description": "배당 중심 안정적 포트폴리오",
+      "components": [
+        {"symbol": "VYM", "weight": 40},
+        {"symbol": "SCHD", "weight": 30},
+        {"symbol": "NOBL", "weight": 30}
+      ]
+    },
+    "CONSERVATIVE_MIX": {
+      "name": "Conservative Mix",
+      "description": "보수적 분산 투자 포트폴리오",
+      "components": [
+        {"symbol": "VOO", "weight": 60},
+        {"symbol": "BND", "weight": 30},
+        {"symbol": "VNQ", "weight": 10}
+      ]
+    }
+  },
+  "market_sectors": {
+    "technology": ["QQQ", "VGT", "SOXX", "XLK"],
+    "healthcare": ["VHT", "XLV", "IBB"],
+    "finance": ["VFH", "XLF", "KRE"],
+    "energy": ["VDE", "XLE", "OIH"],
+    "utilities": ["VPU", "XLU"],
+    "real_estate": ["VNQ", "XLRE"],
+    "consumer": ["VCR", "XLY", "XLP"],
+    "materials": ["VAW", "XLB"],
+    "industrials": ["VIS", "XLI"]
+  }
+}

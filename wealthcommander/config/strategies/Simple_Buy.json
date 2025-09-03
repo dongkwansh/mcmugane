@@ -1,0 +1,25 @@
+{
+  "name": "Simple_Buy",
+  "type": "simple_buy",
+  "description": "단순 ETF 매수 전략 - NAS 환경 최적화",
+  "enabled": true,
+  "symbols": [
+    "VOO",
+    "VTI", 
+    "QQQ"
+  ],
+  "allocation_percent": 30,
+  "min_cash_balance": 100,
+  "max_single_order": 5000,
+  "execution_time": "market_hours",
+  "risk_management": {
+    "max_daily_trades": 10,
+    "stop_loss_percent": null,
+    "take_profit_percent": null
+  },
+  "schedule": {
+    "frequency": "daily",
+    "time": "10:00",
+    "timezone": "America/New_York"
+  }
+}
