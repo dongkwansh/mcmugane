@@ -1,0 +1,234 @@
+{
+  "Simple Buy": {
+    "name": "Simple Buy",
+    "type": "simple_buy",
+    "description": "정해진 시간에 선택된 ETF들을 자동으로 매수하는 단순한 전략",
+    "conditions": {
+      "buy": {
+        "trigger": "매일 14:00에 자동 실행",
+        "symbols": ["VOO", "VTI", "QQQ"],
+        "amount": "각 종목당 10주씩 매수",
+        "orderType": "시장가 주문"
+      },
+      "sell": {
+        "trigger": "수동 매도만 가능",
+        "conditions": "별도의 매도 조건 없음"
+      }
+    },
+    "parameters": {
+      "symbols": ["VOO", "VTI", "QQQ"],
+      "quantity": 10,
+      "executionTime": "14:00",
+      "timezone": "KST",
+      "orderType": "market"
+    },
+    "_comments": {
+      "name": "전략 이름",
+      "type": "전략 유형 식별자",
+      "description": "전략에 대한 상세 설명",
+      "conditions": "매수/매도 조건 설명",
+      "parameters": {
+        "symbols": "거래할 종목 리스트",
+        "quantity": "매수 수량 (주)",
+        "executionTime": "실행 시간 (24시간 형식)",
+        "timezone": "시간대 (KST=한국시간)",
+        "orderType": "주문 유형 (market=시장가, limit=지정가)"
+      }
+    }
+  },
+  "SMA Cross": {
+    "name": "SMA Cross",
+    "type": "sma_crossover", 
+    "description": "단기 이동평균이 장기 이동평균을 돌파할 때 매수/매도하는 전략",
+    "conditions": {
+      "buy": {
+        "trigger": "5일 이동평균 > 20일 이동평균일 때",
+        "symbols": ["SPY", "QQQ"],
+        "amount": "포트폴리오의 50%",
+        "orderType": "시장가 주문"
+      },
+      "sell": {
+        "trigger": "5일 이동평균 < 20일 이동평균일 때",
+        "conditions": "전량 매도"
+      }
+    },
+    "parameters": {
+      "symbols": ["SPY", "QQQ"],
+      "shortMA": 5,
+      "longMA": 20,
+      "quantity": 20,
+      "checkInterval": 60,
+      "portfolioRatio": 0.5
+    },
+    "_comments": {
+      "shortMA": "단기 이동평균 기간 (일)",
+      "longMA": "장기 이동평균 기간 (일)",
+      "checkInterval": "신호 확인 주기 (분)",
+      "portfolioRatio": "포트폴리오 대비 투자 비율 (0.5 = 50%)"
+    }
+  },
+  "RSI Mean": {
+    "name": "RSI Mean",
+    "type": "rsi_mean_reversion",
+    "description": "RSI 지표를 이용한 평균회귀 전략으로 과매수/과매도 구간에서 거래",
+    "conditions": {
+      "buy": {
+        "trigger": "RSI < 30 (과매도 구간)",
+        "symbols": ["TQQQ", "SOXL"],
+        "amount": "포트폴리오의 25%",
+        "orderType": "지정가 주문 (현재가 -1%)"
+      },
+      "sell": {
+        "trigger": "RSI > 70 (과매수 구간)",
+        "conditions": "보유 물량의 50% 매도"
+      }
+    },
+    "parameters": {
+      "symbols": ["TQQQ", "SOXL"],
+      "rsiPeriod": 14,
+      "oversoldLevel": 30,
+      "overboughtLevel": 70,
+      "quantity": 15,
+      "checkInterval": 30
+    },
+    "_comments": {
+      "rsiPeriod": "RSI 계산 기간 (일)",
+      "oversoldLevel": "과매도 기준선 (30 이하면 매수 신호)",
+      "overboughtLevel": "과매수 기준선 (70 이상이면 매도 신호)",
+      "checkInterval": "RSI 확인 주기 (분)"
+    }
+  },
+  "Iron Condor": {
+    "name": "Iron Condor",
+    "type": "iron_condor",
+    "description": "높은 확률로 수익을 내는 중성적 옵션 전략 - 낮은 변동성 구간에서 프리미엄 수취",
+    "conditions": {
+      "entry": {
+        "trigger": "IV Rank > 30%, 만료일 30-45일",
+        "structure": "OTM Put Spread + OTM Call Spread",
+        "delta": "±16 델타 기준으로 숏 스트라이크 설정",
+        "profitTarget": "최대수익의 25-50%"
+      },
+      "exit": {
+        "profitTarget": "프리미엄의 25% 수익시 청산",
+        "stopLoss": "최대손실의 200% 도달시 청산",
+        "timeDecay": "만료 7일전 무조건 청산"
+      }
+    },
+    "parameters": {
+      "symbol": "SPY",
+      "contracts": 1,
+      "dte": 35,
+      "ivRankMin": 30,
+      "shortDelta": 16,
+      "profitTarget": 0.25,
+      "stopLoss": 2.0,
+      "maxDTE": 7
+    },
+    "_comments": {
+      "contracts": "거래할 옵션 계약 수",
+      "dte": "만료일까지 일수 (Days To Expiration)",
+      "ivRankMin": "최소 내재변동성 순위 (%)",
+      "shortDelta": "숏 옵션의 델타 값 (±16)",
+      "profitTarget": "목표 수익률 (0.25 = 25%)",
+      "stopLoss": "손절 배수 (2.0 = 200%)",
+      "maxDTE": "강제 청산 기준 만료일 (일)"
+    }
+  },
+  "Covered Call": {
+    "name": "Covered Call",
+    "type": "covered_call",
+    "description": "보유 주식에 콜옵션을 매도하여 추가 수익을 창출하는 보수적 전략",
+    "conditions": {
+      "entry": {
+        "trigger": "보유주식 100주당 1계약 매도",
+        "strike": "현재가 대비 5-10% OTM",
+        "expiration": "30-45일 만료",
+        "minPremium": "주가의 1% 이상"
+      },
+      "management": {
+        "rollUp": "주가 상승시 더 높은 스트라이크로 롤",
+        "rollOut": "만료 근접시 다음달로 연장",
+        "buyBack": "프리미엄 20% 하락시 환매"
+      }
+    },
+    "parameters": {
+      "symbol": "AAPL",
+      "stockQuantity": 100,
+      "otmPercent": 0.07,
+      "dte": 35,
+      "minPremiumPercent": 0.01,
+      "buyBackPercent": 0.2
+    },
+    "_comments": {
+      "stockQuantity": "보유할 주식 수량 (100주 = 1계약)",
+      "otmPercent": "OTM 비율 (0.07 = 현재가 대비 7% 위)",
+      "minPremiumPercent": "최소 프리미엄 비율 (0.01 = 1%)",
+      "buyBackPercent": "환매 기준 (0.2 = 20% 하락시)"
+    }
+  },
+  "Bull Put Spread": {
+    "name": "Bull Put Spread",
+    "type": "bull_put_spread",
+    "description": "상승장에서 풋옵션 스프레드로 프리미엄을 수취하는 전략",
+    "conditions": {
+      "entry": {
+        "trigger": "강세 전망 + IV Rank > 25%",
+        "structure": "OTM 풋 매도 + 더 낮은 풋 매수",
+        "delta": "숏 풋 15-20 델타",
+        "width": "$5-10 스프레드 폭"
+      },
+      "exit": {
+        "profitTarget": "최대수익의 50%",
+        "stopLoss": "스프레드 폭의 150%",
+        "timeManagement": "만료 10일전 청산"
+      }
+    },
+    "parameters": {
+      "symbol": "QQQ",
+      "contracts": 2,
+      "shortDelta": 18,
+      "spreadWidth": 5,
+      "dte": 40,
+      "profitTarget": 0.5,
+      "stopLoss": 1.5
+    },
+    "_comments": {
+      "shortDelta": "숏 풋의 델타 값 (15-20 권장)",
+      "spreadWidth": "스프레드 폭 ($5)",
+      "profitTarget": "목표 수익률 (0.5 = 50%)",
+      "stopLoss": "손절 배수 (1.5 = 150%)"
+    }
+  },
+  "TMF Test": {
+    "name": "TMF Test",
+    "type": "test_strategy",
+    "description": "Paper 계좌 전용 테스트 전략으로 TMF ETF를 반복적으로 매수/매도하여 거래 시스템 검증",
+    "conditions": {
+      "buy": [
+        "매수 주문 생성 (5주씩)",
+        "시장가 주문으로 즉시 체결",
+        "매수 후 10초 대기"
+      ],
+      "sell": [
+        "매수 완료 10초 후 자동 매도",
+        "동일 수량 (5주) 매도",
+        "매도 완료 2초 후 다음 라운드"
+      ]
+    },
+    "parameters": {
+      "symbol": "TMF",
+      "quantity": 5,
+      "maxRounds": 5,
+      "buyToSellDelay": 10,
+      "nextRoundDelay": 2,
+      "accountType": "Paper 계좌 전용"
+    },
+    "_comments": {
+      "maxRounds": "최대 반복 라운드 수",
+      "buyToSellDelay": "매수 후 매도까지 대기시간 (초)",
+      "nextRoundDelay": "다음 라운드까지 대기시간 (초)",
+      "accountType": "계좌 제한 사항"
+    }
+  }
+}

@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=JetBrains+Mono:wght@100..800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(240, 10%, 3.9%);
+  --foreground: hsl(0, 0%, 98%);
+  --card: hsl(240, 10%, 3.9%);
+  --card-foreground: hsl(0, 0%, 98%);
+  --popover: hsl(240, 10%, 3.9%);
+  --popover-foreground: hsl(0, 0%, 98%);
+  --primary: hsl(142.1, 76.2%, 36.3%);
+  --primary-foreground: hsl(355.7, 100%, 97.3%);
+  --secondary: hsl(240, 3.7%, 15.9%);
+  --secondary-foreground: hsl(0, 0%, 98%);
+  --muted: hsl(240, 3.7%, 15.9%);
+  --muted-foreground: hsl(240, 5%, 64.9%);
+  --accent: hsl(12, 6.5%, 15.1%);
+  --accent-foreground: hsl(0, 0%, 98%);
+  --destructive: hsl(0, 62.8%, 30.6%);
+  --destructive-foreground: hsl(0, 85.7%, 97.3%);
+  --border: hsl(240, 3.7%, 15.9%);
+  --input: hsl(240, 3.7%, 15.9%);
+  --ring: hsl(142.4, 71.8%, 29.2%);
+  --chart-1: hsl(220, 70%, 50%);
+  --chart-2: hsl(160, 60%, 45%);
+  --chart-3: hsl(30, 80%, 55%);
+  --chart-4: hsl(280, 65%, 60%);
+  --chart-5: hsl(340, 75%, 55%);
+  --sidebar: hsl(240, 10%, 3.9%);
+  --sidebar-foreground: hsl(0, 0%, 98%);
+  --sidebar-primary: hsl(142.1, 76.2%, 36.3%);
+  --sidebar-primary-foreground: hsl(355.7, 100%, 97.3%);
+  --sidebar-accent: hsl(12, 6.5%, 15.1%);
+  --sidebar-accent-foreground: hsl(0, 0%, 98%);
+  --sidebar-border: hsl(240, 3.7%, 15.9%);
+  --sidebar-ring: hsl(142.4, 71.8%, 29.2%);
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  --font-serif: Georgia, serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --radius: 0.5rem;
+  --shadow-2xs: 0px 2px 0px 0px hsl(142.4, 71.8%, 29.2% / 0.00);
+  --shadow-xs: 0px 2px 0px 0px hsl(142.4, 71.8%, 29.2% / 0.00);
+  --shadow-sm: 0px 2px 0px 0px hsl(142.4, 71.8%, 29.2% / 0.00), 0px 1px 2px -1px hsl(142.4, 71.8%, 29.2% / 0.00);
+  --shadow: 0px 2px 0px 0px hsl(142.4, 71.8%, 29.2% / 0.00), 0px 1px 2px -1px hsl(142.4, 71.8%, 29.2% / 0.00);
+  --shadow-md: 0px 2px 0px 0px hsl(142.4, 71.8%, 29.2% / 0.00), 0px 2px 4px -1px hsl(142.4, 71.8%, 29.2% / 0.00);
+  --shadow-lg: 0px 2px 0px 0px hsl(142.4, 71.8%, 29.2% / 0.00), 0px 4px 6px -1px hsl(142.4, 71.8%, 29.2% / 0.00);
+  --shadow-xl: 0px 2px 0px 0px hsl(142.4, 71.8%, 29.2% / 0.00), 0px 8px 10px -1px hsl(142.4, 71.8%, 29.2% / 0.00);
+  --shadow-2xl: 0px 2px 0px 0px hsl(142.4, 71.8%, 29.2% / 0.00);
+  --tracking-normal: 0em;
+  --spacing: 0.25rem;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .terminal-font {
+    font-family: var(--font-mono);
+  }
+  
+  .gain {
+    color: hsl(var(--primary));
+  }
+  
+  .loss {
+    color: hsl(var(--destructive));
+  }
+  
+  .neutral {
+    color: hsl(var(--muted-foreground));
+  }
+  
+  .terminal-output {
+    background-color: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
+    border-radius: var(--radius);
+    padding: 1rem;
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    line-height: 1.5;
+    max-height: 400px;
+    overflow-y: auto;
+    white-space: pre-wrap;
+  }
+  
+  .status-indicator {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 8px;
+  }
+  
+  .status-online {
+    background-color: hsl(var(--primary));
+    animation: pulse 2s infinite;
+  }
+  
+  .status-offline {
+    background-color: hsl(var(--destructive));
+  }
+  
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+  
+  .websocket-message {
+    border-left: 3px solid hsl(var(--primary));
+    padding-left: 0.5rem;
+    margin: 0.25rem 0;
+  }
+  
+  .command-prompt::before {
+    content: "WC> ";
+    color: hsl(var(--primary));
+    font-weight: bold;
+  }
+}

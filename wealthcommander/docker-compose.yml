@@ -1,0 +1,78 @@
+version: '3.8'
+
+services:
+  wealthcommander:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    image: wealthcommander:latest
+    container_name: wealthcommander-app
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    environment:
+      - NODE_ENV=production
+      - PORT=8080
+      - TZ=Asia/Seoul
+      # Alpaca API credentials - configure these in Synology Container Manager
+      - ALPACA_LIVE_API_KEY=${ALPACA_LIVE_API_KEY:-}
+      - ALPACA_LIVE_SECRET_KEY=${ALPACA_LIVE_SECRET_KEY:-}
+      - ALPACA_PAPER_API_KEY_1=${ALPACA_PAPER_API_KEY_1:-}
+      - ALPACA_PAPER_SECRET_KEY_1=${ALPACA_PAPER_SECRET_KEY_1:-}
+      - ALPACA_PAPER_API_KEY_2=${ALPACA_PAPER_API_KEY_2:-}
+      - ALPACA_PAPER_SECRET_KEY_2=${ALPACA_PAPER_SECRET_KEY_2:-}
+      - ALPACA_PAPER_API_KEY_3=${ALPACA_PAPER_API_KEY_3:-}
+      - ALPACA_PAPER_SECRET_KEY_3=${ALPACA_PAPER_SECRET_KEY_3:-}
+    volumes:
+      # Persist logs and data across container restarts
+      - wealthcommander_logs:/app/logs
+      - wealthcommander_data:/app/data
+    networks:
+      - wealthcommander_network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/api/status"]
+      interval: 30s
+      timeout: 15s
+      retries: 3
+      start_period: 30s
+    # Resource limits for Synology NAS
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+          cpus: '1.0'
+        reservations:
+          memory: 512M
+          cpus: '0.5'
+    # Security settings
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    cap_add:
+      - CHOWN
+      - SETGID
+      - SETUID
+    read_only: false
+    user: "1001:1001"
+
+volumes:
+  wealthcommander_logs:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./logs
+  wealthcommander_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./data
+
+networks:
+  wealthcommander_network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
