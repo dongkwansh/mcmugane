@@ -1,0 +1,17 @@
+{
+  "name": "myAI_01",
+  "assets": [
+    {
+      "symbol": ".NVDA",
+      "weight": 40
+    },
+    {
+      "symbol": ".MSFT",
+      "weight": 30
+    },
+    {
+      "symbol": ".GOOGL",
+      "weight": 30
+    }
+  ]
+}

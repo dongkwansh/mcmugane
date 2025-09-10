@@ -1,0 +1,30 @@
+{
+  "name": "VWAP 되돌림(근사)",
+  "strategy_type": "vwap_pullback",
+  "universe": [
+    ".SPY",
+    ".QQQ",
+    ".AAPL"
+  ],
+  "timeframe": "15Min",
+  "params": {
+    "period": 20,
+    "dev": 0.01
+  },
+  "risk": {
+    "max_notional_per_symbol": 2000,
+    "max_positions": 5,
+    "stop_loss_pct": 0.05,
+    "take_profit_pct": 0.1
+  },
+  "order": {
+    "type": "limit",
+    "limit_slippage_pct": 0.002,
+    "time_in_force": "day"
+  },
+  "rebalance": {
+    "interval": "1h"
+  },
+  "extended_hours": false,
+  "enabled": true
+}

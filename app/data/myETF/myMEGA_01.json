@@ -1,0 +1,21 @@
+{
+  "name": "myMEGA_01",
+  "assets": [
+    {
+      "symbol": ".AAPL",
+      "weight": 25
+    },
+    {
+      "symbol": ".MSFT",
+      "weight": 25
+    },
+    {
+      "symbol": ".NVDA",
+      "weight": 25
+    },
+    {
+      "symbol": ".GOOGL",
+      "weight": 25
+    }
+  ]
+}

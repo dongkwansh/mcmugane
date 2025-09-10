@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wealth Commander</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif; margin: 0; background:#0b0f17; color:#e6e6e6; }
+    .container { display:grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap:12px; padding:12px; }
+    .card { background:#121826; border:1px solid #1f2a44; border-radius:10px; padding:12px; box-shadow: 0 6px 16px rgba(0,0,0,.25); }
+    .title { font-weight:700; font-size:16px; margin-bottom:8px; }
+    .sub { color:#a5b4c4; font-size:12px; }
+    .row { display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
+    .btn { background:#1f2a44; border:1px solid #2f3b5a; color:#e6e6e6; padding:6px 10px; border-radius:8px; cursor:pointer; }
+    .btn:hover { background:#2a3655; }
+    .select, .input { background:#0f1524; color:#e6e6e6; border:1px solid #2a3655; border-radius:8px; padding:6px 10px; }
+    .grid-col-span-3 { grid-column: span 3; }
+    .muted { color:#8ca0c8; }
+    .ok { color:#7bd88f; }
+    .bad { color:#ff7b7b; }
+    pre { white-space:pre-wrap; word-wrap:break-word; }
+    .terminal { height: 420px; overflow:auto; background:#0a0e19; border-radius:8px; padding:10px; border:1px solid #223153; }
+    .status { height: 100px; overflow:auto; background:#0a0e19; border-radius:8px; padding:8px; border:1px solid #223153; }
+    .sys { height: 80px; overflow:auto; background:#0a0e19; border-radius:8px; padding:8px; border:1px solid #223153; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- 좌 1열 상: 계좌 카드 -->
+    <div class="card">
+      <div class="title">계좌 선택 / 정보</div>
+      <div class="row">
+        <select id="accountSelect" class="select"></select>
+        <button class="btn" id="reloadBtn">Reload JSON</button>
+      </div>
+      <div id="acctInfo" class="sub" style="margin-top:8px;">불러오는 중...</div>
+      <div class="row" style="margin-top:8px;">
+        <label><input type="checkbox" id="extHoursToggle"> Extended Hours</label>
+        <span id="clockInfo" class="muted">시장 시간 로딩중...</span>
+      </div>
+      <div id="myetfInfo" class="sub" style="margin-top:8px;"></div>
+    </div>
+
+    <!-- 좌 1열 하: 자동매매 카드 -->
+    <div class="card" style="margin-top:8px;">
+      <div class="title">자동매매</div>
+      <div class="row">
+        <select id="strategySelect" class="select" style="min-width:260px;"></select>
+        <button class="btn" id="startAutoBtn">실행</button>
+        <button class="btn" id="stopAutoBtn">중단</button>
+      </div>
+      <div class="row sub" style="margin-top:6px;">상태: <span id="autoState" class="muted">(대기)</span></div>
+      <div class="sub" style="margin-top:6px;">최근 상황</div>
+      <div id="autoStatus" class="status"></div>
+    </div>
+
+    <!-- 우 3열: 터미널 + 시스템 메시지 + 입력창 -->
+    <div class="card grid-col-span-3">
+      <div class="title">터미널</div>
+      <div id="terminal" class="terminal"></div>
+      <div class="row" style="margin-top:8px;">
+        <input id="cmdInput" class="input" style="flex:1" placeholder="명령을 입력하세요. 예: .SOXL / buy .SOXL 20 / orders / help">
+        <button class="btn" id="sendBtn">Enter</button>
+      </div>
+      <div class="sub" style="margin-top:6px;">시스템 메시지</div>
+      <div id="syslog" class="sys"></div>
+    </div>
+  </div>
+
+  <script src="/static/main.js"></script>
+</body>
+</html>
