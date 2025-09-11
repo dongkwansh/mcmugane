@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wealth Commander v0.2</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #0a0e1a;
+      --bg-secondary: #111827;
+      --bg-card: #1a1f2e;
+      --bg-hover: #242b3d;
+      --border: #2d3548;
+      --text-primary: #f3f4f6;
+      --text-secondary: #9ca3af;
+      --text-muted: #6b7280;
+      --accent: #3b82f6;
+      --accent-hover: #2563eb;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --shadow: 0 10px 40px rgba(0,0,0,0.5);
+      --header-height: 60px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      overflow: hidden;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, var(--bg-primary) 0%, #0f172a 100%);
+      color: var(--text-primary);
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* 헤더 */
+    .header {
+      background: rgba(17, 24, 39, 0.8);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      height: var(--header-height);
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      max-width: 1800px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .logo-icon {
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, var(--accent) 0%, #8b5cf6 100%);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
+
+    .version {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    /* 메인 컨테이너 */
+    .container {
+      flex: 1;
+      max-width: 1800px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 1.5rem;
+      display: grid;
+      grid-template-columns: 450px 1fr;
+      gap: 1.5rem;
+      height: calc(100vh - var(--header-height));
+      overflow: hidden;
+    }
+
+    /* 카드 스타일 */
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem;
+      box-shadow: var(--shadow);
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card:hover {
+      box-shadow: 0 20px 60px rgba(59, 130, 246, 0.1);
+    }
+
+    .card-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-shrink: 0;
+    }
+
+    .card-icon {
+      width: 20px;
+      height: 20px;
+      opacity: 0.8;
+    }
+
+    /* 좌측 사이드바 */
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      overflow-y: auto;
+      padding-right: 0.5rem;
+    }
+
+    /* 계좌 정보 */
+    .account-card {
+      flex-shrink: 0;
+    }
+
+    .account-info {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .account-select-group {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .select {
+      flex: 1;
+      min-width: 150px;
+      background: var(--bg-secondary);
+      color: var(--text-primary);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.625rem 0.875rem;
+      font-size: 0.875rem;
+      font-family: inherit;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .select:hover {
+      border-color: var(--accent);
+    }
+
+    .select:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+
+    .btn {
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 0.625rem 1rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      font-family: inherit;
+      white-space: nowrap;
+    }
+    /* 버튼 크기 조정 */
+    .btn-sm {
+      padding: 0.5rem 0.75rem;
+      font-size: 0.8rem;
+    }
+
+    /* 터미널 입력 그룹 개선 */
+    .terminal-input-group {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .terminal-input-group .input {
+      flex: 1;
+    }
+
+    /* 터미널 테이블 스타일 */
+    .terminal pre {
+      margin: 0;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      color: var(--text-primary);
+      font-family: 'JetBrains Mono', monospace;
+      line-height: 1.4;
+    }
+
+    /* 미국식 색상 (상승 = 녹색, 하락 = 적색) */
+    .positive {
+      color: var(--success);
+    }
+
+    .negative {
+      color: var(--danger);
+    }
+    .btn:hover {
+      background: var(--accent-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+    }
+
+    .btn-secondary {
+      background: var(--bg-secondary);
+      color: var(--text-primary);
+      border: 1px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+      background: var(--bg-hover);
+      border-color: var(--accent);
+    }
+
+    .btn-danger {
+      background: var(--danger);
+    }
+
+    .btn-danger:hover {
+      background: #dc2626;
+      box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+    }
+
+    .btn-success {
+      background: var(--success);
+    }
+
+    .btn-success:hover {
+      background: #059669;
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+    }
+
+    /* 정보 디스플레이 */
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+      margin-top: 0.5rem;
+    }
+
+    .info-item {
+      background: var(--bg-secondary);
+      padding: 0.875rem;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+
+    .info-label {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      margin-bottom: 0.375rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .info-value {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .info-value.success {
+      color: var(--success);
+    }
+
+    .info-value.danger {
+      color: var(--danger);
+    }
+
+    /* 스위치 토글 */
+    .switch-group {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.875rem;
+      background: var(--bg-secondary);
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+
+    .switch {
+      position: relative;
+      width: 44px;
+      height: 24px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .switch-slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--bg-hover);
+      transition: 0.3s;
+      border-radius: 24px;
+    }
+
+    .switch-slider:before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 3px;
+      bottom: 3px;
+      background: white;
+      transition: 0.3s;
+      border-radius: 50%;
+    }
+
+    input:checked + .switch-slider {
+      background: var(--accent);
+    }
+
+    input:checked + .switch-slider:before {
+      transform: translateX(20px);
+    }
+
+    .switch-label {
+      font-size: 0.875rem;
+      color: var(--text-primary);
+    }
+
+    /* 시장 상태 */
+    .market-status {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 0.75rem;
+      background: var(--bg-secondary);
+      border-radius: 8px;
+      font-size: 0.875rem;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    .status-dot.open {
+      background: var(--success);
+    }
+
+    .status-dot.closed {
+      background: var(--danger);
+    }
+
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+      }
+      70% {
+        box-shadow: 0 0 0 10px rgba(16, 185, 129, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+      }
+    }
+
+    /* 자동매매 섹션 */
+    .auto-card {
+      flex-shrink: 0;
+    }
+
+    .auto-controls {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .auto-strategy-row {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .auto-strategy-row .select {
+      flex: 1;
+    }
+
+    .auto-button-row {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .auto-button-row .btn {
+      flex: 1;
+    }
+
+    .status-panel {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.875rem;
+      height: 150px;
+      overflow-y: auto;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.775rem;
+      line-height: 1.5;
+    }
+
+    .status-line {
+      color: var(--text-secondary);
+      margin-bottom: 0.25rem;
+    }
+
+    .status-indicator {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.375rem 0.75rem;
+      background: var(--bg-secondary);
+      border-radius: 6px;
+      font-size: 0.875rem;
+      margin-top: 0.75rem;
+    }
+
+    .status-indicator.running {
+      color: var(--success);
+      border: 1px solid var(--success);
+    }
+
+    .status-indicator.stopped {
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+    }
+
+    /* myETF 정보 */
+    .myetf-info {
+      padding: 0.625rem 0.875rem;
+      background: var(--bg-secondary);
+      border-radius: 8px;
+      font-size: 0.825rem;
+      color: var(--text-secondary);
+    }
+
+    .myetf-info.warning {
+      background: rgba(245, 158, 11, 0.1);
+      color: var(--warning);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+    }
+
+    /* 메인 영역 */
+    .main-content {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      overflow: hidden;
+    }
+
+    /* 터미널 카드 - 화면에 꽉 차게 */
+    .terminal-card {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+      overflow: hidden;
+    }
+
+    .terminal-wrapper {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+      overflow: hidden;
+    }
+
+    .terminal {
+      flex: 1;
+      background: #0a0d13;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      line-height: 1.6;
+      overflow-y: auto;
+      overflow-x: hidden;
+      min-height: 0;
+    }
+
+    .terminal pre {
+      margin: 0;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      color: var(--text-primary);
+    }
+
+    .terminal-input-wrapper {
+      padding-top: 1rem;
+      flex-shrink: 0;
+    }
+
+    .terminal-input-group {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .input {
+      flex: 1;
+      background: var(--bg-secondary);
+      color: var(--text-primary);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.875rem;
+      transition: all 0.2s;
+    }
+
+    .input:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+      background: var(--bg-hover);
+    }
+
+    .input::placeholder {
+      color: var(--text-muted);
+    }
+
+    /* 시스템 로그 - 고정 높이 */
+    .system-log-card {
+      flex-shrink: 0;
+      height: 180px;
+    }
+
+    .system-log {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.875rem;
+      height: calc(100% - 2.5rem);
+      overflow-y: auto;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.775rem;
+      line-height: 1.5;
+    }
+
+    .system-message {
+      color: var(--text-secondary);
+      margin-bottom: 0.25rem;
+    }
+
+    .system-message:last-child {
+      margin-bottom: 0;
+    }
+
+    /* 스크롤바 스타일 */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--bg-secondary);
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--border);
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--text-muted);
+    }
+
+    /* 반응형 */
+    @media (max-width: 1400px) {
+      .container {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr;
+        max-width: 1000px;
+      }
+
+      .sidebar {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.25rem;
+        overflow-y: visible;
+        padding-right: 0;
+      }
+
+      .main-content {
+        min-height: 500px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      body {
+        overflow-y: auto;
+      }
+
+      .header {
+        padding: 0 1rem;
+      }
+
+      .container {
+        padding: 1rem;
+        gap: 1rem;
+        height: auto;
+        overflow-y: auto;
+      }
+
+      .sidebar {
+        grid-template-columns: 1fr;
+      }
+
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .card {
+        padding: 1rem;
+      }
+
+      .account-select-group {
+        flex-direction: column;
+      }
+
+      .account-select-group .select,
+      .account-select-group .btn {
+        width: 100%;
+      }
+
+      .terminal {
+        font-size: 0.8rem;
+        min-height: 300px;
+      }
+
+      .main-content {
+        min-height: 400px;
+      }
+    }
+
+    /* 애니메이션 */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .card {
+      animation: fadeIn 0.5s ease;
+    }
+
+    /* 로딩 스피너 */
+    .spinner {
+      width: 16px;
+      height: 16px;
+      border: 2px solid var(--border);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- 헤더 -->
+  <header class="header">
+    <div class="header-content">
+      <div class="logo">
+        <div class="logo-icon">W</div>
+        <span>Wealth Commander</span>
+        <span class="version">v0.2</span>
+      </div>
+      <div class="market-status">
+        <span class="status-dot" id="marketDot"></span>
+        <span id="marketStatus">시장 확인중...</span>
+        <span id="serverTime" style="margin-left: 1rem; color: var(--text-muted);"></span>
+      </div>
+    </div>
+  </header>
+
+  <!-- 메인 컨테이너 -->
+  <div class="container">
+    <!-- 좌측 사이드바 -->
+    <aside class="sidebar">
+      <!-- 계좌 카드 -->
+      <div class="card account-card">
+        <h3 class="card-title">
+          <svg class="card-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path>
+          </svg>
+          계좌 정보
+        </h3>
+        
+        <div class="account-info">
+          <div class="account-select-group">
+            <select id="accountSelect" class="select"></select>
+            <button class="btn btn-secondary" id="reloadBtn">새로고침</button>
+          </div>
+
+          <div class="info-grid">
+            <div class="info-item">
+              <div class="info-label">Buying Power</div>
+              <div class="info-value" id="buyingPower">-</div>
+            </div>
+            <div class="info-item">
+              <div class="info-label">Equity</div>
+              <div class="info-value" id="equity">-</div>
+            </div>
+            <div class="info-item">
+              <div class="info-label">Portfolio</div>
+              <div class="info-value" id="portfolioValue">-</div>
+            </div>
+            <div class="info-item">
+              <div class="info-label">Day Trade</div>
+              <div class="info-value" id="dayTradeCount">-</div>
+            </div>
+          </div>
+
+          <div class="switch-group">
+            <label class="switch">
+              <input type="checkbox" id="extHoursToggle">
+              <span class="switch-slider"></span>
+            </label>
+            <span class="switch-label">Extended Hours Trading</span>
+          </div>
+
+          <div class="myetf-info" id="myetfInfo">
+            myETF 상태 확인중...
+          </div>
+        </div>
+      </div>
+
+      <!-- 자동매매 카드 -->
+      <div class="card auto-card">
+        <h3 class="card-title">
+          <svg class="card-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+          </svg>
+          자동매매
+        </h3>
+
+        <div class="auto-controls">
+          <div class="auto-strategy-row">
+            <select id="strategySelect" class="select"></select>
+          </div>
+          <div class="auto-button-row">
+            <button class="btn btn-success" id="startAutoBtn">시작</button>
+            <button class="btn btn-danger" id="stopAutoBtn">중지</button>
+          </div>
+        </div>
+
+        <div class="status-indicator stopped" id="autoIndicator">
+          <span class="status-dot closed"></span>
+          <span id="autoState">대기중</span>
+        </div>
+
+        <div class="card-title" style="font-size: 0.875rem; margin-top: 1rem; margin-bottom: 0.5rem;">
+          실시간 상태
+        </div>
+        <div class="status-panel" id="autoStatus"></div>
+      </div>
+    </aside>
+
+    <!-- 메인 콘텐츠 -->
+    <main class="main-content">
+      <!-- 터미널 카드 -->
+      <div class="card terminal-card">
+        <h3 class="card-title">
+          <svg class="card-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+          </svg>
+          터미널
+        </h3>
+
+        <div class="terminal-wrapper">
+          <div class="terminal" id="terminal"></div>
+          
+          <div class="terminal-input-wrapper">
+            <div class="terminal-input-group">
+              <input 
+                type="text" 
+                id="cmdInput" 
+                class="input" 
+                placeholder="명령어 입력 (help로 도움말 확인)"
+                autocomplete="off"
+              >
+              <button class="btn btn-secondary btn-sm" id="clearBtn" title="터미널 클리어 (Ctrl+L)">
+                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                </svg>
+                Clear
+              </button>
+              <button class="btn btn-secondary btn-sm" id="helpBtn" title="도움말 (Ctrl+H)">
+                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                Help
+              </button>
+              <button class="btn" id="sendBtn">
+                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+                </svg>
+                전송
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 시스템 로그 카드 -->
+      <div class="card system-log-card">
+        <h3 class="card-title">
+          <svg class="card-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+          </svg>
+          시스템 로그
+        </h3>
+        <div class="system-log" id="syslog"></div>
+      </div>
+    </main>
+  </div>
+
+  <script src="/static/main.js"></script>
+</body>
+</html>

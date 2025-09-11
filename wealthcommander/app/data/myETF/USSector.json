@@ -1,0 +1,16 @@
+{
+  "name": "USSector",
+  "assets": [
+    { "symbol": "XLK", "weight": 32.38 }, 
+    { "symbol": "XLF", "weight": 13.90 },  
+    { "symbol": "XLC", "weight": 11.44 },  
+    { "symbol": "XLY", "weight": 11.02 },  
+    { "symbol": "XLV", "weight": 8.86 },  
+    { "symbol": "XLI", "weight": 7.97 },   
+    { "symbol": "XLP", "weight": 5.73 },  
+    { "symbol": "XLE", "weight": 2.85 },  
+    { "symbol": "XLU", "weight": 2.22 },  
+    { "symbol": "XLRE", "weight": 1.89 },  
+    { "symbol": "XLB", "weight": 1.74 }    
+  ]
+}
