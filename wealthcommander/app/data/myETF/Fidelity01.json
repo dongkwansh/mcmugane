@@ -1,0 +1,19 @@
+{
+  "name": "Fidelity01",
+  "assets": [
+    { "symbol": "FTEC",  "weight": 15 },
+    { "symbol": "FELG",  "weight": 15 },
+    { "symbol": "FESM",  "weight": 10 },
+    { "symbol": "FNCL",  "weight": 6 },
+    { "symbol": "FSTA",  "weight": 6 },
+    { "symbol": "FIDU",  "weight": 6 },
+    { "symbol": "FUTY",  "weight": 6 },
+    { "symbol": "FPADX", "weight": 6 },
+    { "symbol": "FHLC",  "weight": 6 },
+    { "symbol": "FENY",  "weight": 3 },
+    { "symbol": "FMAT",  "weight": 3 },
+    { "symbol": "FREL",  "weight": 3 },
+    { "symbol": "GLD",   "weight": 6 },
+    { "symbol": "GDX",   "weight": 4 }
+  ]
+}

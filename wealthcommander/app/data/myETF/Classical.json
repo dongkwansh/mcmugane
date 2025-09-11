@@ -1,0 +1,9 @@
+{
+  "name": "Classical",
+  "assets": [
+    { "symbol": "VTI",  "weight": 40 },  
+    { "symbol": "VXUS", "weight": 30 }, 
+    { "symbol": "BND",  "weight": 20 },  
+    { "symbol": "GLD",  "weight": 10 } 
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "name": "SMA 교차 기본",
+  "strategy_type": "sma_cross",
+  "universe": [
+    ".AAPL",
+    ".MSFT",
+    ".NVDA"
+  ],
+  "timeframe": "15Min",
+  "params": {
+    "fast": 5,
+    "slow": 20
+  },
+  "risk": {
+    "max_notional_per_symbol": 2000,
+    "max_positions": 5,
+    "stop_loss_pct": 0.05,
+    "take_profit_pct": 0.1
+  },
+  "order": {
+    "type": "limit",
+    "limit_slippage_pct": 0.002,
+    "time_in_force": "day"
+  },
+  "rebalance": {
+    "interval": "1h"
+  },
+  "extended_hours": false,
+  "enabled": true
+}
