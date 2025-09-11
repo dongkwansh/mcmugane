@@ -1,0 +1,15 @@
+# Synology 923+ Container Manager 호환 docker-compose
+version: "3.8"
+services:
+  wealthcommander:
+    build: .
+    container_name: wealthcommander
+    env_file:
+      - .env
+    ports:
+      - "8000:8000"
+    volumes:
+      # 전략/myETF JSON, 로그 파일 보존
+      - ./app/data:/app/app/data
+      - ./app/logs:/app/app/logs
+    restart: unless-stopped
