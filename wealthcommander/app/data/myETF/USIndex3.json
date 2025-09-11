@@ -1,8 +1,0 @@
-{
-  "name": "USIndex3",
-  "assets": [
-    { "symbol": "DIA", "weight": 33 },
-    { "symbol": "QQQ", "weight": 34 },
-    { "symbol": "SPY", "weight": 33 }
-  ]
-}
